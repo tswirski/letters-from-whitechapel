@@ -1,0 +1,226 @@
+.page[data-page="welcome"]{
+    @maxWidth : 480px;
+    @marginSpace: 7px;
+    @disabledOpacity: 0.175;
+
+    /**
+     * FACEBOOK ICON
+     */
+    .facebookIcon{
+        position: fixed;
+        top: 50%;
+        margin-top: -79px;
+        left: -5px;
+        width: 47px;
+        transform: rotate(180deg);
+        height: 154px;
+        border: 4px solid rgba(255,255,255,.8);
+        background-repeat: no-repeat;
+        background-size: cover;
+        .box-sizing(border-box);
+        .border-radius(5px);
+        background-image: url(../images/facebook-icon.png);
+        .transition(border-color .4s);
+        &:hover{
+            border-color: rgb(255,255,255);
+        }
+        display: none;
+        @media(min-width: @screen-sm-min){
+            display: block;
+        }
+    }
+
+    /**
+    * BLOOD PUDDLE
+    */
+    .blood{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url('../images/blood.png') no-repeat center center;
+        width: 40%;
+        height: 500px;
+        background-size: contain;
+        margin-left: 15%;
+        margin-top: 1%;
+        z-index: -1;
+    }
+
+    /**
+     * TITLE
+     */
+    .title{
+        padding-top:7%;
+        position:relative;
+
+        span[data-text="letters-from"]{
+            color: rgb(255, 255, 255);
+            display: block;
+            font-family: alex-brush;
+            font-size: 40px;
+            position: relative;
+            text-align: center;
+            cursor:default;
+        }
+
+        span[data-text="whitechapel"]{
+            color: rgb(255, 255, 255);
+            display: block;
+            font-family: whitechapel-bb;
+            font-size: 60px;
+            margin-top: -30px;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            cursor: default;
+
+            @media(min-width: @screen-sm-min){
+                font-size: 160px;
+            }
+        }
+    }
+
+    /**
+     * WEBSOCKET LACK MESSAGE
+     */
+    .websocketLackMessage{
+        max-width: @maxWidth;
+        background: rgba(255,255,255,.85);
+        color: rgb(0,0,0);
+        padding: 25px;
+        text-align: justify;
+        margin: 0 auto;
+        .border-radius(@borderRadius);
+        display: none;
+    }
+
+    /**
+     * FORM
+     */
+    form{
+        width:100%;
+        position: relative;
+        max-width: @maxWidth;
+        margin:0 auto;
+        padding: 0 5px;
+        box-sizing: border-box;
+
+        /** SELECT SIGN-IN OR SIGN-UP BUTTONS */
+        .buttonGroup{
+            margin-bottom: @marginSpace;
+            .clearfix();
+            label{
+                input[type="radio"]{
+                    display:none;
+                }
+                background: rgba(255,255,255,.2);
+                .border-radius(@borderRadius);
+                .box-sizing(border-box);
+                color: rgba(0,0,0,1);
+                display: inline-block;
+                font-size: 22px;
+                float: left;
+                width: 33%;
+                text-align: center;
+                .user-select(none);
+                .transition(all @transitionDuration);
+
+                &:hover{
+                    cursor: pointer;
+                    background-color:rgba(255, 255, 255, .3);
+                    color: rgba(0, 0, 0, 1);
+                }
+
+                &.active{
+                    opacity: 1;
+                    color: @colorTheme;
+                    background: rgb(255,255,255);
+                    &:hover{
+                        cursor: default;
+                    }
+                }
+                &:nth-child(odd){
+                    margin-right: @marginSpace;
+                }
+
+                span{
+                    display: inline-block;
+                    padding: 4px 0;
+                }
+            }
+        }
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"]{
+        .box-sizing(border-box);
+        position: relative;
+        display: block;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: 0;
+        border-radius: 3px;
+        background: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+    }
+
+    .inputBox{
+        margin-bottom: @marginSpace;
+        position: relative;
+        .transition(opacity @transitionDuration);
+
+        &.hidden{
+            display: none;
+        }
+
+        &.disabled{
+            opacity: @disabledOpacity;
+        }
+
+        .error{
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            color: white;
+            font-size: 11px;
+            padding: 1px 8px;
+            background: darkred;
+            border-radius: 3px 0 3px 3px;
+            display: none;
+            white-space: nowrap;
+        }
+
+        input[type="text"],
+        input[type="password"]{
+            width: 100%;
+        }
+    }
+
+    .submitButtonBox{
+        .clearfix();
+        position: relative;
+        top: 2px;
+        input[type="submit"]{
+            padding: 8px 40px;
+            float: right;
+            &:hover{
+                color:@colorTheme;
+            }
+        }
+    }
+
+    .recoveryCheckbox,
+    .randomPasswordCheckbox{
+        .transition(opacity @transitionDuration);
+        position: relative;
+        left: 5px;
+        &.hidden{
+            display: none;
+        }
+        span{
+            color: rgba(255, 255, 255, .75);
+            background-color: rgba(0,0,0,.25);
+        }
+    }
+}

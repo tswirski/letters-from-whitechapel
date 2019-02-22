@@ -1,0 +1,56 @@
+/**
+ * PLAYER DETAILS POPUP
+ */
+.popup[data-popup="player-details"]{
+
+  .friendButtonBox{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    &[data-is-friend="true"]{
+      .addToFriends{
+        display: none;
+      }
+    }
+    &[data-is-friend="false"]{
+      .removeFromFriends{
+        display: none;
+      }
+    }
+
+    &:hover{
+      color: @colorTextDarkBackground;
+      cursor: pointer;
+    }
+  }
+
+  .avatar{
+    width: 80px;
+    height: 80px;
+    .border-radius(50%);
+    position: absolute;
+  }
+
+  .memberName{
+    position: relative;
+    height: 93px;
+    margin-left: 115px;
+    padding-top: 36px;
+    .box-sizing(border-box);
+    font-size: 20px;
+    color: @colorTextDarkBackground;
+  }
+
+  .memberDetailsTextRow{
+    margin: 10px;
+    font-size: 11px;
+    color: @colorTextDarkBackground;
+  }
+  .memberDetailsTextRowValue{
+    color: @colorTheme;
+    padding: 0 11px;
+    font-size: 14px;
+    vertical-align: bottom;
+  }
+}

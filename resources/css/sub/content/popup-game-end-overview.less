@@ -1,0 +1,138 @@
+.popup[data-popup="game-end-overview"] {
+  @marginSize: 5px;
+  @cellSize: 25px;
+  @smallFont: 11px;
+  @normalFont: 13px;
+
+  background-color: black;
+  display: inline-block;
+  padding: 100px 15px 15px;
+
+  h2{
+    color: @colorTheme;
+    font-size: 69px;
+    position: absolute;
+    top: -11px;
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+  h1{
+    color: @colorTextDarkBackground;
+    opacity: 1;
+    font-size: 40px;
+    position: absolute;
+    top: 14px;
+    left: 44px;
+    z-index:2;
+  }
+
+  .dayOverview {
+    .clearfix();
+    background: black;
+    display: block;
+    margin-bottom: @marginSize;
+
+    .dayOverviewRightRail {
+      float: left;
+      .box-sizing(border-box);
+      border-left: 1px solid white;
+    }
+
+    .dayOverviewLeftRail {
+      float: left;
+      width: 70px;
+    }
+  }
+
+  .dayOverviewMovementMethods,
+  .dayOverviewMovementHideoutIDs,
+  .dayOverviewMovementOrdination{
+    .clearfix();
+    margin-bottom: @marginSize;
+  }
+
+  .dayOverviewTitle {
+    color: @colorTextDarkBackground;
+    font-size: 11px;
+  }
+
+  .dayOverviewMovementHideoutIDs[data-day="3"]{
+    .dayOverviewMovementHideoutId:first-child{
+      background: @colorTheme;
+      color: white;
+    }
+  }
+
+  .dayOverviewMurderScene {
+    font-size: @normalFont;
+    color: @colorTextDarkBackground;
+    text-align: center;
+    .border-radius(50%);
+    background: @colorTheme;
+    width: @cellSize;
+    height: @cellSize;
+    .box-sizing(border-box);
+    float: right;
+    margin-right: @marginSize;
+    margin-top: 17px;
+    padding-top: 6px;
+  }
+
+  .dayOverviewMovementOrdinal {
+    float: left;
+    font-size: @smallFont;
+    width: @cellSize;
+    height: @cellSize;
+    text-align: center;
+    padding-top: 3px;
+    display: inline-block;
+    color: @colorTextDarkBackground;
+    .box-sizing(border-box);
+    margin-left: @marginSize;
+    &.disabled{
+      opacity: 0.15;
+    }
+  }
+
+  .dayOverviewMovementHideoutId {
+    float: left;
+    font-size: @normalFont;
+    width: @cellSize;
+    height: @cellSize;
+    text-align: center;
+    display: inline-block;
+    padding-top: 6px;
+    background: white;
+    .box-sizing(border-box);
+    margin-left: @marginSize;
+    .border-radius(50%);
+  }
+
+  .dayOverviewMovementMethod {
+    float: left;
+    height: @cellSize;
+    margin-left: @marginSize;
+    .border-radius(@borderRadius);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+
+    &[data-method="carriage"] {
+      width: 2 * @cellSize + @marginSize;
+      background-image: url(/resources/images/icon/carriage_white.png);
+    }
+
+    &[data-method="walk"] {
+      background-image: url(/resources/images/icon/footsteps_white.png);
+      width: @cellSize;
+    }
+
+    &[data-method="alley"] {
+      background-image: url(/resources/images/icon/lantern_white.png);
+      width: @cellSize;
+    }
+  }
+}
+
+

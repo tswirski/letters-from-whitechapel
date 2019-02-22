@@ -1,0 +1,27 @@
+/**
+ * Created by lama on 2016-07-23.
+ */
+/** TAB VISIBILITY */
+(function(){
+    var vis = (function(){
+        var stateKey, eventKey, keys = {
+            hidden: "visibilitychange",
+            webkitHidden: "webkitvisibilitychange",
+            mozHidden: "mozvisibilitychange",
+            msHidden: "msvisibilitychange"
+        };
+        for (stateKey in keys) {
+            if (stateKey in document) {
+                eventKey = keys[stateKey];
+                break;
+            }
+        }
+        return function(c) {
+            if (c) document.addEventListener(eventKey, c);
+            return !document[stateKey];
+        }
+    })();
+
+    $.isActiveTab = function(){ return vis() };
+    vis(function(){ $(window).trigger('tabchange', [vis()])});
+})();

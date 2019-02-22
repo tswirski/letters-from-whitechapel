@@ -1,0 +1,387 @@
+/** Tip pokazywany onHover dla element�w dashbordu */
+.hoverTip {
+  &:after {
+    position: absolute;
+    font-size: 9px;
+    right: 1px;
+    bottom: 0px;
+    line-height: 1em;
+    .transition(color .3s);
+    color: transparent;
+  }
+  &:hover{
+    &:after{
+      color: @colorTheme;
+    }
+  }
+}
+
+/**
+ * PAGE PLACEMENT / ALIGN CONTAINER
+ */
+#dashboardPageMixin(){
+  #dashboardTable {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+
+  #dashboardTableCell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+  }
+
+  #dashboardBox {
+
+    width: 100%;
+    height: 100%;
+
+    @media(min-width: @screen-sm-min){
+      width: ~'calc(100% - 140px)';
+      height: ~'calc(100% - 110px)';
+    }
+
+    max-width: 1220px;
+    max-height: 1000px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: @borderRadius;
+    position: relative;
+    padding: @space;
+    .box-sizing(border-box);
+  }
+}
+
+/**
+ * NAVIGATION PANEL
+ */
+#dashboardNavigationMixin(){
+  #dashboardNavigationBox {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+
+    @media(max-width: @screen-sm-max){
+      left: 50px;
+    }
+
+    button {
+      float: left;
+      height: 100%;
+      margin-right: @space;
+      background-color: rgba(0, 0, 0, .425);
+      border-radius: @borderRadius;
+      border: 0;
+      padding: 0 15px;
+      color: white;
+      .transition(background-color .3s);
+      &:focus {
+        outline: 0;
+      }
+      &:hover {
+        color: @colorTextLightBackground;
+        background-color: white;
+      }
+    }
+  }
+}
+
+/**
+ * PLAYER MIXIN (to use on dashboard player list)
+ */
+.dashboardListedPlayer() {
+  .box-sizing(content-box);
+  display: block;
+  height: 30px;
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 5px;
+  .transition(all .3s);
+
+  /** Details not visible */
+  &:not([data-details-visible="true"]){
+    .hoverTip();
+    &:after{
+      content: 'click';
+    }
+
+    &:hover{
+      cursor: pointer;
+      padding: 5px;
+      background: white;
+      border-radius: 3px;
+      .playerNickname {
+        color: @colorTheme;
+      }
+    }
+  }
+
+  /** MY MEMBER BOX */
+  &.me{
+    .playerNickname{
+      font-size: 12px;
+      color: @colorTextDarkBackground;
+    }
+  }
+
+  /** MY FRIEND MEMBER BOX */
+  &.friend{
+    &:before{
+      content: 'f';
+      line-height: 10px;
+      font-size: 10px;
+      height: 10px;
+      position: absolute;
+      top: 0;
+      left: -4px;
+      width: 10px;
+      text-align: center;
+      background-color: @colorTheme;
+      .border-radius(50%);
+      font-weight: bold;
+      color: @colorTextDarkBackground;
+      .transition(all .3s);
+    }
+    &:hover{
+      &:before{
+        top: 5px;
+        color: @colorTheme;
+        background-color: white;
+      }
+    }
+  }
+
+  .playerAvatar {
+    background-size: 120% 120%;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-left: 1px;
+    .border-radius(50%);
+    position: absolute;
+  }
+
+  .playerNickname{
+    color: darken(@colorTextDarkBackground, 35%);
+    font-size: 12px;
+    margin-left: 40px;
+    vertical-align: middle;
+    line-height: 30px;
+    max-width: ~'calc(100% - 40px)';
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    .transition(color .3s);
+//    font-weight: bold;
+  }
+
+  /** Details visible */
+  &[data-details-visible="true"]{
+    height: 85px;
+    background: rgb(255,255,255);
+    .border-radius(3px);
+    padding: 5px;
+
+    &.me{
+      height: 65px;
+      .playerDetailsFriendAddButton,
+      .playerDetailsFriendRemoveButton{
+        display: none !important;
+      }
+    }
+
+    &.friend {
+      &:before {
+        color: @colorTheme;
+      }
+      .playerDetailsFriendRemoveButton {
+        display: block;
+      }
+    }
+
+    &:not(.friend) {
+      .playerDetailsFriendAddButton{
+        display:block;
+      }
+    }
+
+    .playerDetailsMoreButton{
+      font-size: 8px;
+      height: 10px;
+      line-height: 10px;
+      position: absolute;
+      padding: 2px;
+      top: 0;
+      right: 2px;
+      color: @colorTextLightBackground;
+      &:hover{
+        color: @colorTheme;
+        cursor: pointer;
+      }
+    }
+
+    .playerNickname{
+      color: @colorTheme;
+    }
+
+    .playerDetailsTextRow {
+      font-size: 11px;
+      padding-left: 40px;
+    }
+
+    .playerDetailsTextRowValue {
+      color: @colorTheme;
+      font-weight: bold;
+      padding: 0 11px;
+    }
+
+    .playerDetailsFriendAddButton,
+    .playerDetailsFriendRemoveButton{
+      text-align: right;
+      margin-right: 10px;
+      margin-top: 5px;
+      font-size: 12px;
+      display: none;
+      color: @colorTextLightBackground;
+      &:hover{
+        cursor: pointer;
+        color: @colorTheme;
+      }
+    }
+  }
+}
+
+/**
+ * CHAT INNER
+ */
+#dashboardChatMixin(){
+  /** CHAT MESSAGES CONTAINER */
+  #dashboardChatMessagesBox {
+    height: ~'calc(100% - 55px)';
+    background-color: rgba(0, 0, 0, .7);
+    border-radius: 3px;
+    position: relative;
+    padding: @space;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /** CHAT SINGLE MESSAGE */
+  .chatMessageBox {
+    display: block;
+    position: relative;
+    margin-bottom: (@space);
+
+    .chatMessageAvatar {
+      width: 40px;
+      background-size: 100% 100%;
+      height: 40px;
+      .border-radius(50%);
+      position: absolute;
+      bottom: 0;
+    }
+
+    .chatMessageTextBox {
+      margin-left: 64px;
+      display: inline-block;
+      min-height: 40px;
+      position: relative;
+      .border-radius(@borderRadius);
+      .box-sizing(border-box);
+      padding: 0px @space;
+      background-color: rgb(220, 220, 220);
+      vertical-align: top;
+
+      .nickname {
+        color: darkred;
+        font-size: 10px;
+        padding-left: 10px;
+        padding-top: 3px;
+      }
+      .message {
+        padding-left: 20px;
+        font-size: 12px;
+        overflow-x: hidden;
+        padding-right: @space;
+      }
+
+      &:before {
+        right: 100%;
+        bottom: 7px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-right-color: #DCDCDC;
+        border-width: 7px 15px 7px;
+      }
+    }
+
+    &.notification {
+      .chatMessageTextBox {
+        background-color: khaki;
+        &:before {
+          display: none;
+        }
+      }
+    }
+
+    /** CHAT MY MESSAGE */
+    &.myMessage{
+      text-align: right;
+      min-height: 28px;
+      right: 8px;
+
+      .message{
+        padding: @space !important;
+        font-size: 12px;
+      }
+      .chatMessageAvatar{
+        display: none;
+      }
+      .chatMessageTextBox{
+        &:before{
+          right: -30px;
+          border-left-color: darkred;
+          border-right-color: transparent;
+        }
+        max-width: ~'calc(100% - 65px)';
+        margin-left:50px;
+        margin-right: 15px;
+        min-height: 28px;
+        color: @colorTextDarkBackground;
+        background-color: @colorTheme;
+      }
+    }
+  }
+
+  /** CHAT INPUT TEXTAREA */
+  #dashboardChatInputBox {
+    margin-top: 5px;
+    textarea {
+      border-radius: @borderRadius;
+      .box-sizing(border-box);
+      display: block;
+      font-size: 15px;
+      line-height: 21px;
+      max-height: 40px;
+      overflow-x: hidden;
+      padding: 10px 10px 0px 13px;
+      position: absolute;
+      resize: none;
+      width: 100%;
+      overflow-y: scroll;
+    }
+
+    &:after {
+      content: "press ENTER to send";
+      position: absolute;
+      bottom: -15px;
+      right: 4px;
+      font-size: 8px;
+      color: @colorLightGray;
+    }
+  }
+}

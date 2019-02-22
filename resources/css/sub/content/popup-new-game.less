@@ -1,0 +1,50 @@
+.popup[data-popup="new-game"]{
+  h2{
+    font-weight: 100;
+    font-size: @font-size-h2;
+    margin-top: 10px;
+    margin-bottom: 33px;
+    color: @colorTheme;
+  }
+
+  input[type="radio"]{
+    display: none;
+  }
+
+  input[type="password"]{
+//    font-size: @font-size-base;
+    background: transparent;
+    border: 1px solid;
+    padding: 10px;
+    margin-left: 15px;
+    width: ~'calc(100% - 55px)';
+    display: none;
+  }
+
+  label{
+    font-size: @font-size-base;
+    display: block;
+    margin: 15px 15px;
+    &.selected{
+      color: @colorTextDarkBackground;
+    }
+    &:hover{
+      &:not(.selected){
+        color: darken(@colorTextDarkBackground, 30%);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .randomJackHideout {
+    margin: 0px 15px;
+
+    input[type="checkbox"] {
+      margin: 10px;
+    }
+
+    label[for="randomJackHideout"] {
+      display: inline-block;
+    }
+  }
+}

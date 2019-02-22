@@ -1,0 +1,126 @@
+@import "./../../../../css/lib/lesshat.less";
+@fontSize: 16px;
+@xIconColor: rgb(255,255,255);
+@xIconBackground: transparent;
+@transitionSpeed: .5s;
+
+#qtip-overlay div{
+    opacity: .625;
+}
+
+.qTipPopup.qtip{
+    /** Style okienka popup */
+    background:rgba(0,0,0,.92);
+    border-radius:1px;
+    border: 0;
+    /*    border: 4px solid black;
+        box-shadow:0 0 14px #000;*/
+    padding:5px;
+    min-width:260px;
+    max-width: none;
+    border: 1px dashed white;
+
+    /** Style przycisku zamykania "X" */
+    div.qTipPopupCloseX{
+        top: -28px;
+        right: -28px;
+        background-color: @xIconBackground;
+        padding: 2px;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        &:hover{
+            cursor: pointer;
+        }
+
+        div{
+            position: relative;
+            margin-top: 8px;
+            &:before, &:after{
+                background-color: @xIconColor;
+                display: block;
+                height: 2px;
+                position: absolute;
+                width: 24px;
+            }
+            &:before{
+                content: '';
+                top: -4px;
+                -moz-transform: translateY(7px) rotate(45deg);
+                -ms-transform: translateY(7px) rotate(45deg);
+                -webkit-transform: translateY(7px) rotate(45deg);
+                transform: translateY(7px) rotate(45deg);
+            }
+            &:after{
+                content: '';
+                top: 10px;
+                -moz-transform: translateY(-7px) rotate(-45deg);
+                -ms-transform: translateY(-7px) rotate(-45deg);
+                -webkit-transform: translateY(-7px) rotate(-45deg);
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+    }
+
+    /** Style zawartości */
+    .qtip-content{
+        padding:15px;
+        overflow:visible;
+        /** Style domyślnych komunikatów tekstowych */
+        .qTipContentText{
+            max-width:500px;
+
+            span{
+                word-spacing: 2px;
+                letter-spacing: 0px;
+                color: rgb(255,255,255);
+                line-height: 1.4em;
+                font-family: open-sans;
+                font-size: @fontSize;
+            }
+        }
+    }
+
+    .qTipContentButtons{
+        position: absolute;
+        bottom: -18px;
+        left: -1px;
+        width: 100%;
+        .qTipOkButton{
+            color: darkred !important;
+        }
+
+        .qTipCancelButton, .qTipCloseButton, .qTipOkButton{
+
+            border: 0;
+            float: right;
+            border-radius: 1px;
+            transition: background-color .4s;
+            color: #000;
+            font-family: open-sans;
+            font-weight: 700;
+            letter-spacing: 2px;
+            /* background: red !important; */
+            font-size: @fontSize;
+            text-align: center;
+            padding: 5px 10px;
+            margin: 0px;
+            left: 7px;
+            position: relative;
+            background-color: beige;
+
+            &:hover{
+                background-color: rgba(255,255,255,1);
+            }
+        }
+        .qTipOkButton{
+            border-right: 2px solid white;
+            margin-right: 3px;
+        }
+    }
+}
+/*.qTipPopupModal.qtip{background:#f5f5f5;-webkit-border-radius:5px;-webkit-background-clip:padding-box;-moz-border-radius:5px;-moz-background-clip:padding;border-radius:5px;background-clip:padding-box;-webkit-box-shadow:0 0 2px #000;-moz-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000;padding:5px;position:fixed;max-width:100%;max-height:100%}
+.qTipPopupModal.qtip .qtip-content{overflow-y:auto;overflow-x:hidden;background:#fff;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;max-width:100%}
+.qTipPopupModal.qtip .qtip-icon{top:-34px;right:0;position:absolute;text-decoration:none;border:0;background:0 0;color:#fff;font-size:26px;height:26px;width:26px;line-height:26px;font-weight:700}
+.qTipPopupModal.qtip .qtip-icon:hover{color:#c8c8c8;cursor:pointer}
+*/

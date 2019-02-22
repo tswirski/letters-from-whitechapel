@@ -1,0 +1,231 @@
+@import "dashboard-mixins.less";
+
+.page[data-page = "dashboard-general"] {
+  @maxWidth: @layoutNativeLength;
+  @marginSpace: 7px;
+  @disabledOpacity: 0.175;
+  @space: 5px;
+  height: 100%;
+
+  #dashboardPageMixin();
+  #dashboardNavigationMixin();
+
+  /**
+   * DASHBOARD CHAT BOX
+   */
+  #dashboardChatBox {
+    .box-sizing(border-box);
+    position: absolute;
+    top: 40px + (2 * @space);
+    bottom: @space;
+    left: @space;
+    right: 220px + (2 * @space);
+    #dashboardChatMixin();
+  }
+
+  /**
+   * DASHBOARD PLAYERS BOX
+   */
+  #playersList {
+    width: 220px;
+    position: absolute;
+    right: @space;
+    top: 40px + (2 * @space);
+    bottom: @space;
+    padding: @space;
+    background: rgba(0, 0, 0, .7);
+    overflow-y: auto;
+    .box-sizing(border-box);
+    .border-radius(@borderRadius);
+
+    .player{
+      .dashboardListedPlayer();
+    }
+  }
+
+  /**
+   * DASHBOARD GAMES LIST
+   */
+  #gamesBox{
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    width: 225px;
+    bottom: 5px;
+    background: rgba(0,0,0,.3);
+    border-radius: 3px;
+    display: none;
+
+    /** naglowek tabeli */
+    .gameListHeader{
+      .clearfix();
+      > span{
+        color: rgba(255,255,255,.4);
+        font-size: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: left;
+      }
+    }
+
+    /** Gra */
+    .game {
+      .clearfix();
+      position: relative;
+      .transition(background-color .3s);
+
+      > span {
+        .box-sizing(border-box);
+
+        &.gameHost,
+        &.gameId,
+        &.gamePlayerCount {
+          display: inline-block;
+          float: left;
+          padding: 5px;
+          width: 33%;
+        }
+
+        &.gameId,
+        &.gamePlayerCount {
+          color: rgba(255, 255, 255, .7);
+          font-size: 10px;
+          padding-top: 12px;
+          text-align: center;
+        }
+
+        &.gameHost {
+          img {
+            width: 30px;
+            height: 30px;
+            .border-radius(50%);
+            vertical-align: middle;
+          }
+        }
+
+        &.gameHint {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          opacity: 0;
+          &:after {
+            position: absolute;
+            bottom: 1px;
+            right: 2px;
+            font-size: 8px;
+            line-height: 9px;
+            color: lightgray;
+          }
+        }
+
+        &.gameDice{
+          width: 22px;
+          height: 22px;
+          position: absolute;
+          top: 8px;
+          left: 52px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-image: url(../images/dice-white.png);
+        }
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, .4);
+        cursor: pointer;
+
+        span.gameHint {
+          opacity: 1;
+          &:after {
+            content: "click to join";
+          }
+        }
+      }
+
+      /** USING PASSWORD */
+      &[data-using-password="yes"]{
+        span.gameId,
+        span.gamePlayerCount {
+          color: @colorTheme;
+        }
+
+        &:hover{
+          background-color: rgba(139, 0, 0, .4);
+          span.gameId,
+          span.gamePlayerCount {
+            color: rgba(255, 0, 0, 1);
+          }
+        }
+
+        span.gameHint{
+          &:after{
+            content: "password protected";
+          }
+        }
+      }
+    }
+  }
+
+  /** MODIFICATIONS */
+  &[data-show-games="true"] {
+    #dashboardChatBox {
+      left: 235px;
+    }
+    #gamesBox {
+      display: block;
+    }
+    button[name="recentGames"]{
+      background-color: rgba(0, 0, 0, .755) !important;
+      &:hover{
+        background-color: rgb(255, 255, 255) !important;
+      }
+    }
+  }
+}
+
+/**
+ * NEW GAME POPUP
+ */
+.popup[data-page="dashboard.game.create"]{
+  h2{
+    font-weight: 100;
+    font-size: @font-size-h2;
+    margin-top: 10px;
+    margin-bottom: 33px;
+    color: @colorTheme;
+  }
+
+  input[type="radio"]{
+    display: none;
+  }
+
+  input[type="password"]{
+    font-size: @font-size-base;
+    background: transparent;
+    border: 1px solid;
+    padding: 10px;
+    margin-left: 15px;
+    width: ~'calc(100% - 55px)';
+    display: none;
+  }
+
+  label{
+    font-size: @font-size-base;
+    display: block;
+    margin: 15px 15px;
+    &.selected{
+      color: @colorTextDarkBackground;
+    }
+    &:hover{
+      &:not(.selected){
+        color: darken(@colorTextDarkBackground, 30%);
+        cursor: pointer;
+      }
+    }
+  }
+}

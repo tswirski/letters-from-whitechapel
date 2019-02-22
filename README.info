@@ -1,0 +1,13 @@
+STEPS REQUIRED TO SETUP:
+
+1. REQUIREMENTS:
+  PHP 5.4 with MYSQLi library installed
+  MYSQL
+
+2. Go to /modules/database/config and setup your mysql connection details (this is standard Kohana configuration object)
+3. Go to /application/boostrap.php and adjust BASEDIR if required (this is standard Kohana configuration variable)
+4. Run ./server.php from CLI
+
+* make sure to allow write to /images/ folder (avatars are stored there, this is iportant if you run the server on linux).
+
+And most of all - go to /database/ and setup your Mysql database with the jack_sql script.

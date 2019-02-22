@@ -1,0 +1,76 @@
+html{
+    height: 100%;
+}
+
+body{
+    background: url('../images/jack_background.jpg') no-repeat center center fixed;
+    .background-size(cover);
+    font-size:14px;
+    font-family: sinkin-sans;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+body{
+    min-width: 320px;
+    min-height: 320px;
+    -ms-content-zooming: none;
+    touch-action: none;
+}
+
+#content{
+    height: 100%;
+}
+
+textarea, input { outline: none; }
+*:not(input):not(textarea){
+    .user-select(none);
+}
+
+*:focus {
+    outline: none;
+}
+
+.popoverNotificationsBox{
+    position: fixed;
+    top: 30px;
+    left: 20%;
+    width: 40%;
+    z-index: @zindex-popover;
+
+    .popoverNotification{
+        position: relative;
+        width: 100%;
+        padding: 30px;
+        background: rgba(0,0,0,.8);
+        font-size: @font-size-large;
+        color: white;
+        border: 1px solid white;
+        .border-radius(@borderRadius);
+        margin: 20px auto;
+        text-align: center;
+    }
+}
+
+/*
+.drop {
+    background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(13,52,58,1) ), to(rgba(255,255,255,0.6))  );
+    background: -moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,.6) 100%);
+    width:1px;
+    height:89px;
+    position: absolute;
+    bottom:200px;
+    -webkit-animation: fall .63s linear infinite;
+    -moz-animation: fall .63s linear infinite;
+}
+
+ animate the drops
+@-webkit-keyframes fall {
+    to {margin-top:900px;}
+}
+@-moz-keyframes fall {
+    to {margin-top:900px;}
+}*/

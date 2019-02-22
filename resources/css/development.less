@@ -1,0 +1,184 @@
+@colorNodeBackground: rgba(255, 255, 255, .555);
+@colorNodeBorder: rgb(255, 255, 255);
+
+@colorCorrelatedNode: orange;
+@colorCorrelationBaseNode: orangered;
+@colorDirectJunction: yellowgreen;
+
+body{
+    font-family: arial;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    * *{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+// MENU
+.menu{
+    position:fixed;
+    top:10px;
+    border-top: 2px solid red;
+    left:10px;
+    z-index:2 ;
+    width: 200px;
+    .menuTitle{
+        background: rgba(255, 255, 255, .65);
+        padding: 10px;
+        display: block;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .menuOptions{
+        width: 100%;
+        display: none;
+    }
+
+    .option{
+        display: block;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    &:hover{
+        .menuTitle{
+            display: none;
+        }
+        .menuOptions{
+            background: white;
+            display: block;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+
+        .option{
+            margin: 5px;
+            padding: 5px;
+            display: block;
+
+            &:hover{
+                background: red;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// BOARD
+.board{
+    width: 2100px;
+    height: 1406px;
+    position: relative;
+    z-index: 1;
+}
+
+// HIDEOUT
+.node[data-node="hideout"]{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, .555);
+    &:hover{
+        background: rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+    &:after{
+        content: attr(data-id);
+        position: absolute;
+        top: -22px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        text-shadow: 0 0 3px black;
+    }
+}
+
+// JUNCTION
+.node[data-node="junction"] {
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    border: 2px solid white;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, .555);
+    &:after{
+        content: attr(data-id);
+        position: absolute;
+        top: -20px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        text-shadow: 0 0 3px black;
+    }
+    &:hover{
+        background: rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+}
+
+
+.node[data-node="district"]{
+    border-top: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    &:after{
+        content: attr(data-id);
+        position: absolute;
+        top: -27px;
+        margin-left: -10px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        text-shadow: 0 0 3px black;
+    }
+    &:hover{
+        border-top-color: rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+}
+
+.node{
+    &.directJunction{
+        background-color: @colorDirectJunction !important;
+    }
+
+    &.correlationBaseNode{
+        &[data-node="district"]{
+            border-top-color:@colorCorrelationBaseNode;
+        }
+
+        &:not([data-node="district"]){
+            background-color: @colorCorrelationBaseNode;
+        }
+    }
+
+    &.correlatedNode{
+        &[data-node="district"]{
+            border-top-color:@colorCorrelatedNode;
+        }
+
+        &:not([data-node="district"]){
+            background-color: @colorCorrelatedNode;
+        }
+    }
+}

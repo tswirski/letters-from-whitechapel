@@ -1,0 +1,19 @@
+.popup[data-popup="player-kick-ban"]{
+  button{
+    height: 30px;
+    .border-radius(@borderRadius);
+    width: ~'calc(100% - 20px)';
+    border: 0;
+    background-color: transparent;
+    color: darken(@colorTextDarkBackground, 30%);
+    text-align: left;
+    .box-sizing(content-box);
+    .transition(all .3s);
+    padding: 5px 10px;
+    font-size: @font-size-base;
+    &:hover{
+      background-color: @colorTheme;
+      color: @colorTextDarkBackground;
+    }
+  }
+}
